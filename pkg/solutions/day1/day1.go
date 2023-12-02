@@ -1,4 +1,4 @@
-package solutions
+package day1
 
 import (
 	"bufio"
@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func Day1CalculateLine(line string) int {
+func CalculateLine(line string) int {
 	var firstDigit = 0
 	var lastDigit = 0
 	for _, c := range line {
@@ -21,16 +21,16 @@ func Day1CalculateLine(line string) int {
 	return (firstDigit * 10) + lastDigit
 }
 
-func Day1CalculateLines(lines []string) int {
+func CalculateLines(lines []string) int {
 	var sum = 0
 	for _, line := range lines {
-		sum += Day1CalculateLine(line)
+		sum += CalculateLine(line)
 	}
 
 	return sum
 }
 
-func Day1ReplaceNumbers(line string) string {
+func ReplaceNumbers(line string) string {
 	var s = line
 
 	s = strings.Replace(s, "one", "o1e", -1)
@@ -46,20 +46,20 @@ func Day1ReplaceNumbers(line string) string {
 	return s
 }
 
-func Day1Part2CalculateLine(line string) int {
-	return Day1CalculateLine(Day1ReplaceNumbers(line))
+func Part2CalculateLine(line string) int {
+	return CalculateLine(ReplaceNumbers(line))
 }
 
-func Day1Part2CalculateLines(lines []string) int {
+func Part2CalculateLines(lines []string) int {
 	var sum = 0
 	for _, line := range lines {
-		sum += Day1Part2CalculateLine(line)
+		sum += Part2CalculateLine(line)
 	}
 
 	return sum
 }
 
-func Day1() (int, error) {
+func Solve() (int, error) {
 	file, err := os.Open("day1.txt")
 	if err != nil {
 		return 0, err
@@ -73,10 +73,10 @@ func Day1() (int, error) {
 		lines = append(lines, scanner.Text())
 	}
 
-	return Day1CalculateLines(lines), nil
+	return CalculateLines(lines), nil
 }
 
-func Day1Part2() (int, error) {
+func SolvePart2() (int, error) {
 	file, err := os.Open("day1.txt")
 	if err != nil {
 		return 0, err
@@ -90,5 +90,5 @@ func Day1Part2() (int, error) {
 		lines = append(lines, scanner.Text())
 	}
 
-	return Day1Part2CalculateLines(lines), nil
+	return Part2CalculateLines(lines), nil
 }
